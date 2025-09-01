@@ -46,7 +46,7 @@ const About: React.FC = () => {
                     </div>
                     <div>
                       <p className="text-gray-400 text-sm">Location</p>
-                      <p className="text-white font-semibold">San Francisco, CA</p>
+                      <p className="text-white font-semibold">Beirut, Lebanon</p>
                     </div>
                   </div>
                   
@@ -85,12 +85,14 @@ const About: React.FC = () => {
 
             <div className="prose prose-invert max-w-none">
               <p className="text-gray-300 leading-relaxed text-lg">
-                Passionate mobile developer with a keen eye for creating seamless user experiences. 
-                I specialize in building high-performance mobile applications that users love to interact with.
+                Passionate mobile developer with 5+ years of experience creating innovative mobile solutions. 
+                I specialize in React Native, Flutter, and native iOS/Android development, delivering high-performance 
+                applications that serve thousands of users worldwide.
               </p>
               <p className="text-gray-300 leading-relaxed text-lg">
-                When I'm not coding, you'll find me exploring the latest mobile development trends, 
-                contributing to open-source projects, or mentoring aspiring developers.
+                Based in Beirut, Lebanon, I've worked with startups and established companies to bring their mobile 
+                visions to life. I'm passionate about clean code, user experience, and staying at the forefront of 
+                mobile technology trends.
               </p>
             </div>
           </div>

@@ -13,10 +13,14 @@ const Hero: React.FC = () => {
 
       {/* Floating Geometric Shapes */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-cyan-400 rotate-45 animate-float"></div>
+        <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-cyan-400 rotate-45 animate-float-3d"></div>
         <div className="absolute top-3/4 right-1/4 w-6 h-6 bg-purple-400 rotate-12 animate-float-delay-1"></div>
         <div className="absolute top-1/2 right-1/3 w-3 h-3 bg-blue-400 rotate-45 animate-float-delay-2"></div>
         <div className="absolute bottom-1/4 left-1/3 w-5 h-5 bg-green-400 rotate-12 animate-float-delay-3"></div>
+        <div className="absolute top-1/6 right-1/6 w-8 h-8 bg-lime-400/30 rounded-full animate-float-3d"></div>
+        <div className="absolute bottom-1/6 left-1/6 w-6 h-6 bg-orange-400/40 rotate-45 animate-float-delay-1"></div>
+        <div className="absolute top-2/3 left-1/5 w-4 h-4 bg-pink-400/50 rounded-full animate-float-delay-2"></div>
+        <div className="absolute bottom-1/2 right-1/5 w-5 h-5 bg-indigo-400/40 rotate-12 animate-float-3d"></div>
       </div>
 
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
