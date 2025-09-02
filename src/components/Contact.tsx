@@ -51,7 +51,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-gray-400 text-sm">Email</p>
-                  <p className="text-white font-semibold">ousamaaboukhalil@gmail.com</p>
+                  <p className="text-white font-semibold">alex.johnson@email.com</p>
                 </div>
               </div>
               
@@ -61,7 +61,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-gray-400 text-sm">Phone</p>
-                  <p className="text-white font-semibold">+961 70 123 456</p>
+                  <p className="text-white font-semibold">+1 (555) 123-4567</p>
                 </div>
               </div>
               
@@ -71,7 +71,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-gray-400 text-sm">Location</p>
-                  <p className="text-white font-semibold">Beirut, Lebanon</p>
+                  <p className="text-white font-semibold">San Francisco, CA</p>
                 </div>
               </div>
             </div>
@@ -96,13 +96,8 @@ const Contact: React.FC = () => {
           {/* Contact Form */}
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-2xl blur-xl"></div>
-            <input type="hidden" name="_next" value={window.location.origin + "/?message=sent"} />
             
-            <form action="https://formsubmit.co/ousamaaboukhalil@gmail.com" method="POST" className="relative bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/10 space-y-6">
-              <input type="hidden" name="_subject" value="New Portfolio Contact Message" />
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_template" value="table" />
-              
+            <form onSubmit={handleSubmit} className="relative bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/10 space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
                   Name
@@ -111,6 +106,8 @@ const Contact: React.FC = () => {
                   type="text"
                   id="name"
                   name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   required
                   className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300"
                   placeholder="Your Name"
@@ -125,6 +122,8 @@ const Contact: React.FC = () => {
                   type="email"
                   id="email"
                   name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   required
                   className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300"
                   placeholder="your@email.com"
@@ -138,6 +137,8 @@ const Contact: React.FC = () => {
                 <textarea
                   id="message"
                   name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   required
                   rows={5}
                   className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300 resize-none"
@@ -147,11 +148,21 @@ const Contact: React.FC = () => {
               
               <button
                 type="submit"
+                disabled={isSubmitting}
                 className="group relative w-full py-4 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-xl text-white font-semibold overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <span className="relative z-10 flex items-center justify-center space-x-2">
-                  <Send className="w-5 h-5" />
-                  <span>Send Message</span>
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5" />
+                      <span>Send Message</span>
+                    </>
+                  )}
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
               </button>
