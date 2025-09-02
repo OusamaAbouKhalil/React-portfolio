@@ -33,7 +33,7 @@ const Navigation: React.FC = () => {
           {/* Logo */}
           <div className="flex items-center space-x-2 group">
             <img
-              src="../public/Ousama Abou Khalil Avatar.webp"
+              src="/Ousama Abou Khalil Avatar.webp"
               alt="Logo"
               className="w-12 h-12 rounded-full border-2 border-white/20 transform group-hover:scale-110 transition-all duration-300"
             />
