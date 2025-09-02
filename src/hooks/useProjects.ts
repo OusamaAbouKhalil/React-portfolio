@@ -20,7 +20,18 @@ export const useProjects = () => {
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setProjects(data || []);
+
+      // Normalize tech_stack to ensure it's always an array
+      const normalizedData = data.map((project: Project) => ({
+        ...project,
+        tech_stack: Array.isArray(project.tech_stack)
+          ? project.tech_stack
+          : typeof project.tech_stack === 'string'
+          ? JSON.parse(project.tech_stack) // <-- parse JSON array string
+          : [],
+      }));
+
+      setProjects(normalizedData || []);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to fetch projects');
     } finally {

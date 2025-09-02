@@ -38,13 +38,17 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose }) => {
   const handleProjectSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
+
     try {
+      // Ensure tech_stack is stored as an array
       const projectData: Omit<Project, 'id' | 'created_at'> = {
         ...projectForm,
-        tech_stack: projectForm.tech_stack.split(',').map(tech => tech.trim()),
+        tech_stack: Array.isArray(projectForm.tech_stack)
+          ? projectForm.tech_stack
+          : projectForm.tech_stack.split(',').map(tech => tech.trim()),
+        category: 'mobile'
       };
-      
+
       await addProject(projectData);
       setProjectForm({
         title: '',
@@ -59,6 +63,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose }) => {
       });
       alert('Project added successfully!');
     } catch (error) {
+      console.error(error);
       alert('Failed to add project');
     } finally {
       setLoading(false);
@@ -68,7 +73,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose }) => {
   const handleCertificateSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
+
     try {
       await addCertificate(certificateForm);
       setCertificateForm({
@@ -80,6 +85,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose }) => {
       });
       alert('Certificate added successfully!');
     } catch (error) {
+      console.error(error);
       alert('Failed to add certificate');
     } finally {
       setLoading(false);

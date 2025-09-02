@@ -1,5 +1,4 @@
 import React from 'react';
-import { Heart, Code, Coffee } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -13,11 +12,6 @@ const Footer: React.FC = () => {
           <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
             <span>© 2025 Ousama Abou Khalil.</span>
             <span>All rights reserved.</span>
-          </div>
-          
-          <div className="flex items-center justify-center space-x-2 text-xs text-gray-600">
-            <Code className="w-4 h-4" />
-            <span>Powered by React, TypeScript & Supabase</span>
           </div>
         </div>
       </div>

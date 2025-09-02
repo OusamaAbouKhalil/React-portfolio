@@ -16,6 +16,7 @@ const Navigation: React.FC = () => {
 
   const navItems = [
     { name: 'About', href: '#about' },
+    { name: 'Timeline', href: '#timeline' },
     { name: 'Projects', href: '#projects' },
     { name: 'Certificates', href: '#certificates' },
     { name: 'Contact', href: '#contact' },
@@ -31,9 +32,11 @@ const Navigation: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-2 group">
-            <div className="p-2 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-xl transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
-              <Smartphone className="w-6 h-6 text-white" />
-            </div>
+            <img
+              src="../public/Ousama Abou Khalil Avatar.webp"
+              alt="Logo"
+              className="w-12 h-12 rounded-full border-2 border-white/20 transform group-hover:scale-110 transition-all duration-300"
+            />
             <span className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Ousama Abou Khalil
             </span>
