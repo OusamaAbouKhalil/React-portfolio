@@ -96,6 +96,7 @@ const Contact: React.FC = () => {
           {/* Contact Form */}
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-2xl blur-xl"></div>
+            <input type="hidden" name="_next" value={window.location.origin + "/?message=sent"} />
             
             <form action="https://formsubmit.co/ousamaaboukhalil@gmail.com" method="POST" className="relative bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/10 space-y-6">
               <input type="hidden" name="_subject" value="New Portfolio Contact Message" />

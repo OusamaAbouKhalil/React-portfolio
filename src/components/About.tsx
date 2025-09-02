@@ -1,26 +1,20 @@
 import React from 'react';
-import { MapPin, Calendar, Award, Coffee } from 'lucide-react';
-import type { Skill } from '../types';
-
-const skills: Skill[] = [
-  { name: 'React Native', level: 95, category: 'mobile' },
-  { name: 'Flutter', level: 90, category: 'mobile' },
-  { name: 'Swift', level: 85, category: 'mobile' },
-  { name: 'Kotlin', level: 88, category: 'mobile' },
-  { name: 'Node.js', level: 92, category: 'backend' },
-  { name: 'Firebase', level: 90, category: 'backend' },
-  { name: 'MongoDB', level: 85, category: 'backend' },
-  { name: 'Figma', level: 80, category: 'design' },
-  { name: 'Xcode', level: 90, category: 'tools' },
-  { name: 'Android Studio', level: 88, category: 'tools' },
-];
+import { MapPin, Calendar, Award, Coffee, Globe } from 'lucide-react';
+import { usePersonalInfo } from '../hooks/usePersonalInfo';
+import { useSkills } from '../hooks/useSkills';
+import { useLanguages } from '../hooks/useLanguages';
 
 const About: React.FC = () => {
+  const { personalInfo } = usePersonalInfo();
+  const { skills } = useSkills();
+  const { languages } = useLanguages();
+
   const categoryColors = {
     mobile: 'from-cyan-500 to-blue-500',
     backend: 'from-purple-500 to-pink-500',
-    design: 'from-green-500 to-lime-500',
-    tools: 'from-orange-500 to-red-500',
+    frontend: 'from-green-500 to-lime-500',
+    design: 'from-orange-500 to-red-500',
+    tools: 'from-indigo-500 to-purple-500',
   };
 
   return (
@@ -33,7 +27,7 @@ const About: React.FC = () => {
           <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto rounded-full"></div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left Column - Personal Info */}
           <div className="space-y-8">
             <div className="relative group">
@@ -46,7 +40,7 @@ const About: React.FC = () => {
                     </div>
                     <div>
                       <p className="text-gray-400 text-sm">Location</p>
-                      <p className="text-white font-semibold">Beirut, Lebanon</p>
+                      <p className="text-white font-semibold">{personalInfo?.location || 'Beirut, Lebanon'}</p>
                     </div>
                   </div>
                   
@@ -85,16 +79,30 @@ const About: React.FC = () => {
 
             <div className="prose prose-invert max-w-none">
               <p className="text-gray-300 leading-relaxed text-lg">
-                Passionate mobile developer with 5+ years of experience creating innovative mobile solutions. 
-                I specialize in React Native, Flutter, and native iOS/Android development, delivering high-performance 
-                applications that serve thousands of users worldwide.
-              </p>
-              <p className="text-gray-300 leading-relaxed text-lg">
-                Based in Beirut, Lebanon, I've worked with startups and established companies to bring their mobile 
-                visions to life. I'm passionate about clean code, user experience, and staying at the forefront of 
-                mobile technology trends.
+                {personalInfo?.summary || 'Experienced mobile developer creating user-friendly and reliable apps, adept at troubleshooting and teamwork, passionate about learning new technologies and best practices.'}
               </p>
             </div>
+
+            {/* Languages Section */}
+            {languages.length > 0 && (
+              <div className="relative group">
+                <div className="absolute inset-0 bg-gradient-to-r from-lime-500/20 to-green-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                <div className="relative bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10">
+                  <h3 className="text-xl font-bold text-white mb-4 flex items-center space-x-2">
+                    <Globe className="w-6 h-6 text-lime-400" />
+                    <span>Languages</span>
+                  </h3>
+                  <div className="space-y-3">
+                    {languages.map((language) => (
+                      <div key={language.id} className="flex items-center justify-between">
+                        <span className="text-white font-medium">{language.name}</span>
+                        <span className="text-lime-400 text-sm font-semibold">{language.proficiency}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Right Column - Skills */}
@@ -102,7 +110,7 @@ const About: React.FC = () => {
             <h3 className="text-2xl font-bold text-white mb-8">Technical Skills</h3>
             <div className="space-y-6">
               {skills.map((skill, index) => (
-                <div key={skill.name} className="group">
+                <div key={skill.id} className="group">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-white font-medium">{skill.name}</span>
                     <span className="text-gray-400 text-sm">{skill.level}%</span>
